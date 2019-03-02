@@ -30,7 +30,7 @@ with open('batter_stats.csv','w') as csvfile:
             raw_text = str(cell.text)
             row_data.append(raw_text)
         player_and_pos = row_data[1]
-        split = player_and_pos.rsplit('.')
+        split = player_and_pos.rsplit('.',1)
         row_data[1] = split[0]
         row_data.insert(2, split[1][1:])
         writer.writerow(row_data)
@@ -56,7 +56,7 @@ with open('pitcher_stats.csv','w') as csvfile:
             raw_text = str(cell.text)
             row_data.append(raw_text)
         player_and_pos = row_data[1]
-        split = player_and_pos.rsplit('.')
+        split = player_and_pos.rsplit('.',1)
         row_data[1] = split[0]
         row_data.insert(2, split[1][1:])
         writer.writerow(row_data)
