@@ -35,7 +35,7 @@ import csv
 #        row_data.insert(2, split[1][1:])
 #        writer.writerow(row_data)
 
-with open('batter_stats.csv','w') as csvfile:
+with open('batter_stats.csv','wb') as csvfile:
     writer = csv.writer(csvfile)
     raw_html = open('batter_stats.html').read()
     html = BeautifulSoup(raw_html, 'html.parser')
@@ -72,7 +72,7 @@ with open('batter_stats.csv','w') as csvfile:
         row_data.insert(2, split[1][1:])
         writer.writerow(row_data)
     
-with open('pitcher_stats.csv','w') as csvfile:
+with open('pitcher_stats.csv','wb') as csvfile:
     writer = csv.writer(csvfile)
     raw_html = open('pitcher_stats.html').read()
     html = BeautifulSoup(raw_html, 'html.parser')
