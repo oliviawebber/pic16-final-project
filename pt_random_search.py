@@ -24,7 +24,7 @@ df = df.drop('Season', axis=1)
 labels = list(df.columns)
 features = np.array(df)
 
-train_features, test_features, train_targets, test_targets = train_test_split(features, targets, test_size=0.99, random_state=42)
+train_features, test_features, train_targets, test_targets = train_test_split(features, targets, test_size=0.01, random_state=42)
 
 # Number of trees in random forest
 n_estimators = [int(x) for x in np.linspace(start = 200, stop = 2000, num = 10)]
@@ -51,7 +51,6 @@ rf = RandomForestRegressor()
 rf_random = RandomizedSearchCV(rf, random_grid, n_iter=1000, cv=5, verbose=10)
 rf_random.fit(train_features, train_targets)
 
-#'bootstrap': True, 'min_samples_leaf': 4, 'n_estimators': 400, 'max_features': 'sqrt', 'min_samples_split': 2, 'max_depth': 70
-#{'bootstrap': True, 'min_samples_leaf': 1, 'n_estimators': 200, 'max_features': 'auto', 'min_samples_split': 10, 'max_depth': 40}
+#{'bootstrap': True, 'min_samples_leaf': 4, 'n_estimators': 1400, 'max_features': 'sqrt', 'min_samples_split': 10, 'max_depth': 50}
 
 print '\n', rf_random.best_params_

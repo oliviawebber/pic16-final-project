@@ -21,6 +21,8 @@ df = df.drop(['Rank', 'Player', 'Team', 'Salary'], axis=1)
 df = df.drop('Position', axis=1)
 df = df.drop('Season', axis=1)
 
+print df
+
 labels = list(df.columns)
 features = np.array(df)
 
