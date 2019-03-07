@@ -64,20 +64,27 @@ random_grid = {'n_estimators': n_estimators,
                'min_samples_leaf': min_samples_leaf,
                'bootstrap': bootstrap}
 
+param_grid = {'n_estimators': [int(x) for x in np.linspace(start = 200, stop = 1000, num = 50)],
+               'max_features': ['auto'],
+               'max_depth': [20,30,40,50,60],
+               'min_samples_split': [8,9,10,11,12],
+               'min_samples_leaf': [1,2,3],
+               'bootstrap': [True]}
+
 
 labels = list(df.columns)
 features = np.array(df)
 
-train_features, test_features, train_targets, test_targets = train_test_split(features, targets, test_size=0.5, random_state=42)
+train_features, test_features, train_targets, test_targets = train_test_split(features, targets, test_size=0.99, random_state=42)
 
 rf = RandomForestRegressor()
-rf_random = RandomizedSearchCV(rf, random_grid, n_iter=100, cv=3, verbose=10)
+rf_random = RandomizedSearchCV(rf, random_grid, n_iter=1000, cv=5, verbose=10, n_jobs=-1)
 rf_random.fit(train_features, train_targets)
 
 print '\n', rf_random.best_params_
 
 #'bootstrap': True, 'min_samples_leaf': 4, 'n_estimators': 400, 'max_features': 'sqrt', 'min_samples_split': 2, 'max_depth': 70
-#
+#{'bootstrap': True, 'min_samples_leaf': 1, 'n_estimators': 200, 'max_features': 'auto', 'min_samples_split': 10, 'max_depth': 40}
 
 #rf.fit(train_features, train_targets)
 #
