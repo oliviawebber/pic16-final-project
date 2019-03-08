@@ -48,9 +48,9 @@ random_grid = {'n_estimators': n_estimators,
                'bootstrap': bootstrap}
 
 rf = RandomForestRegressor()
-rf_random = RandomizedSearchCV(rf, random_grid, n_iter=1000, cv=5, verbose=10)
+rf_random = RandomizedSearchCV(rf, random_grid, n_iter=1000, cv=5, verbose=10, n_jobs=-1)
 rf_random.fit(train_features, train_targets)
 
-#{'bootstrap': True, 'min_samples_leaf': 4, 'n_estimators': 1400, 'max_features': 'sqrt', 'min_samples_split': 10, 'max_depth': 50}
-
+#{'bootstrap': True, 'min_samples_leaf': 4, 'n_estimators': 400, 'max_features': 'auto', 'min_samples_split': 10, 'max_depth': 40}
+#
 print '\n', rf_random.best_params_
