@@ -42,23 +42,25 @@ for i in range(len(years)):
 #targets = (targets-np.mean(targets))/np.std(targets)
 #targets = targets / 100000
 
-mask = (df.G < 3) & \
-       (df.AB < 3) & \
-       (df.R < 3) & \
-       (df.H < 3) & \
-       (df.B2 < 3) & \
-       (df.B3 < 3) & \
-       (df.HR < 3) & \
-       (df.RBI < 3) & \
-       (df.SB < 3) & \
-       (df.CS < 3) & \
-       (df.BB < 3) & \
-       (df.SO < 3) & \
-       (df.IBB < 3) & \
-       (df.HBP < 3) & \
-       (df.SH < 3) & \
-       (df.SF < 3) & \
-       (df.GIDP < 3) 
+cutoff = 5
+
+mask = (df.G < cutoff) & \
+       (df.AB < cutoff) & \
+       (df.R < cutoff) & \
+       (df.H < cutoff) & \
+       (df.B2 < cutoff) & \
+       (df.B3 < cutoff) & \
+       (df.HR < cutoff) & \
+       (df.RBI < cutoff) & \
+       (df.SB < cutoff) & \
+       (df.CS < cutoff) & \
+       (df.BB < cutoff) & \
+       (df.SO < cutoff) & \
+       (df.IBB < cutoff) & \
+       (df.HBP < cutoff) & \
+       (df.SH < cutoff) & \
+       (df.SF < cutoff) & \
+       (df.GIDP < cutoff) 
        
 df = df.drop(df[mask].index)
 
@@ -67,7 +69,7 @@ df = df.drop(['num', 'playerID', 'yearID', 'stint', 'teamID', 'IgID'], axis=1)
 labels = list(df.columns)
 targets = df['salary']
 
-targets = np.log(np.log(targets))
+targets = np.log(targets)
 df = df.drop('salary', axis=1)
 
 features = np.array(df)
@@ -92,3 +94,4 @@ plt.plot(predictions, test_targets, 'o')
 plt.xlabel('predictions')
 plt.ylabel('targets')
 plt.show()
+
