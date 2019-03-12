@@ -11,6 +11,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+"""
+Begin Processing Code
+"""
 df=pd.read_csv('test_bat.csv', sep=',',header=0)
 #https://www3.nd.edu/~lawlib/baseball_salary_arbitration/minavgsalaries/Minimum-AverageSalaries.pdf
 
@@ -27,8 +31,7 @@ for i in range(len(avg_salary)-1):
 
 years = range(1985,2019,1)
 
-removed_outliers = (df.salary < 16269954) & (df.salary > 1569444)
-#removed_outliers = df['Salary'] > 500000
+removed_outliers = (df.salary < np.percentile(df.salary, 75)*1.5) & (df.salary > np.percentile(df.salary, 25)/1.5)
 df = df[removed_outliers]
 
 for i in range(len(years)):
@@ -37,13 +40,7 @@ for i in range(len(years)):
     for adjustment in inflation[i:]:
         df.loc[mask, 'salary'] = df[mask]['salary'] * (adjustment)
 
-#targets = np.array(df['Salary'])
-#targets = np.sqrt(targets)
-#targets = (targets-np.mean(targets))/np.std(targets)
-#targets = targets / 100000
-
 cutoff = 5
-
 mask = (df.G < cutoff) & \
        (df.AB < cutoff) & \
        (df.R < cutoff) & \
@@ -61,8 +58,12 @@ mask = (df.G < cutoff) & \
        (df.SH < cutoff) & \
        (df.SF < cutoff) & \
        (df.GIDP < cutoff) 
-       
 df = df.drop(df[mask].index)
+"""
+End Processing Code
+"""
+
+
 
 df = df.drop(['num', 'playerID', 'yearID', 'stint', 'teamID', 'IgID'], axis=1)
 
