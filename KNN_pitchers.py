@@ -4,16 +4,16 @@ import matplotlib.pyplot as plt
 from sklearn import neighbors 
 from sklearn.model_selection import train_test_split
 
-df = pd.read_csv('updated_expanded_batter.csv', sep=',', header=0)
+df = pd.read_csv('updated_expanded_pitcher.csv', sep=',', header=0)
+
+df=pd.read_csv('updated_expanded_batter.csv', sep=',',header=0)
+df = df.drop(['num', 'playerID', 'yearID', 'stint', 'teamID', 'IgID', 'prev_salary'], axis=1)
 
 salaries = np.array(df['salary'])
-
 sal_range =  np.amax(salaries) - np.amin(salaries)
 sal_interval = sal_range/500
 targets = salaries/sal_interval # target salaries
 targets = targets.astype(int)
-
-df = df.drop(['num', 'playerID', 'yearID', 'stint', 'teamID', 'IgID', 'prev_salary'], axis=1)
 
 features = np.array(df) # player stats
 
