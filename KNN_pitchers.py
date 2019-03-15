@@ -4,9 +4,8 @@ import matplotlib.pyplot as plt
 from sklearn import neighbors 
 from sklearn.model_selection import train_test_split
 
-df = pd.read_csv('updated_expanded_pitcher.csv', sep=',', header=0)
+df = pd.read_csv('clean_pitcher.csv', sep=',', header=0)
 
-df=pd.read_csv('updated_expanded_batter.csv', sep=',',header=0)
 df = df.drop(['num', 'playerID', 'yearID', 'stint', 'teamID', 'IgID', 'prev_salary'], axis=1)
 
 salaries = np.array(df['salary'])
@@ -31,16 +30,8 @@ pred = [] # non numpy array form of predictions
 for elem in predictions:
     pred.append(elem[0])
 
-era = test_features[:,11] # read test stats into arrays for visualization
-whip = test_features[:,12]
 so = test_features[:,7]
 wins = test_features[:,8]
-
-plt.xlabel('ERA')
-plt.ylabel('WHIP')
-plt.title('KNN Model Salary Predictions with Hot Color Scheme')
-plt.scatter(era, whip, c=pred, cmap = 'hot')
-plt.show()
 
 plt.xlabel('Strikeouts')
 plt.ylabel('Wins')
