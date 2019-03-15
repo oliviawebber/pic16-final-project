@@ -5,13 +5,10 @@ from sklearn import neighbors
 from sklearn.model_selection import train_test_split
 import math
 
-
 df = pd.read_csv('updated_expanded_pitcher.csv', sep=',', header=0)
-
 
 df=pd.read_csv('updated_expanded_batter.csv', sep=',',header=0)
 df = df.drop(['num', 'playerID', 'yearID', 'stint', 'teamID', 'IgID', 'prev_salary'], axis=1)
-
 
 salaries = np.array(df['salary'])
 sal_range =  np.amax(salaries) - np.amin(salaries)
