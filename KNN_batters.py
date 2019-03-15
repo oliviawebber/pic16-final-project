@@ -33,11 +33,8 @@ for elem in predictions:
 
 hr = test_features[:,6] # read test stats into arrays for visualization
 rbi = test_features[:,7]
-so = test_features[:,9]
-runs = test_features[:,3]
-hits = test_features[:,2]
-slg = test_features[:,12]
-avg = test_features[:,10]
+runs = test_features[:,2]
+hits = test_features[:,3]
 
 plt.xlabel('Home Runs')
 plt.ylabel('RBI')
