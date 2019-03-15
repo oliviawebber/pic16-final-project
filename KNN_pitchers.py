@@ -3,7 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import neighbors 
 from sklearn.model_selection import train_test_split
-import math
 
 df = pd.read_csv('updated_expanded_pitcher.csv', sep=',', header=0)
 
