@@ -79,16 +79,18 @@ End Processing Code
 #print 
 #df.loc['salary'] = np.sqrt(df['salary'])
 
-df = df.drop(['num', 'playerID', 'yearID', 'stint', 'teamID', 'IgID', 'G', 'AB'], axis=1)
+
+
+df = df.drop(['num', 'playerID', 'yearID', 'stint', 'teamID', 'IgID'], axis=1)
 
 labels = list(df.columns)
 targets = np.array(df['salary'])
 targets = np.log(targets)
 
-
 df = df.drop('salary', axis=1)
 features = np.array(df)
 features[:,-1] = np.log(features[:,-1]) 
+
 
 #sal_range =  np.amax(targets) - np.amin(targets)
 #sal_interval = sal_range/500
