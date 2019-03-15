@@ -7,26 +7,15 @@ from sklearn.model_selection import train_test_split
 df = pd.read_csv('pitcher_stats.csv', sep=',', header=0)
 
 salaries = np.array(df['Salary'])
-salaries = np.sort(salaries)
 
-min_sal = np.amin(salaries)
-max_sal = np.amax(salaries)
-sal_range =  max_sal - min_sal
-
-#sal_interval = sal_range/500
+sal_range =  np.amax(salaries) - np.amin(salaries)
+sal_interval = sal_range/500
+targets = salaries/sal_interval # target salaries
+targets = targets.astype(int)
 
 df = df.drop(['Rank', 'Player', 'Position', 'Team', 'Season'], axis=1)
 
 features = np.array(df) # player stats
-features = features[features[:,13].argsort()] # sort features by salary
-features3D = np.array_split(features, 100) # split features into 100 sub arrays
-
-targets = []
-for i in range(len(features3D)):
-    for j in range(len(features3D[i])):
-        targets.append(i)
-        
-targets = np.array(targets)
 
 training_features, test_features, training_targets, test_targets = train_test_split(features, targets, test_size = .4)
 
