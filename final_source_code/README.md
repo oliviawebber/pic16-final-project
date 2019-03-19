@@ -2,9 +2,9 @@ Files:
 
 Batting.csv - Raw batting data
 
-KNN_batters.py
+KNN_batters.py - Application of the KNN Model to the cleaned batter data, with visualizations and results
 
-KNN_pitchers.py
+KNN_pitchers.py - Application of the KNN Model to the cleaned pitcher data, with visualizations and results
 
 PIC 16 Final Project Write Up.pdf - Final report
 
